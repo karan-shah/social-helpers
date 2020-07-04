@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>Social Helpers</title>
+
+    <!-- Font-Awesome css -->
+    <link rel="stylesheet" href="/assets/css/all.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <%- include('partials/header.ejs', {title: 'home', isUserLoggedIn: isUserLoggedIn}) %>
+
+        <!-- General Site Navigation -->
+        <%- include('partials/navigation.ejs', {title: 'home', currentUser: currentUser, isUserLoggedIn: isUserLoggedIn}) %>
+
+            <!-- Main Content  -->
+            <div class="box m-4 main-content-container">
+                <div>
+                    <h2>Welcome to Social Helpers!</h2>
+                    <h5>Let us all help out each other and make this world a great place to live!</h5>
+                    <div class="mt-4 mb-0">
+                        <h4>Who we are: </h4>
+                        <span class="text-muted">Social Helpers© is a non-profit organization founded in 2020. We are group of more than 20 people
+                            wants help people to get rid of drugs addiction and improve their life. The purpose of this organization
+                            is to enhance people life by organizing free sessions to overcome various kind of drug addiction
+                            as well as to overcome various health related issues.
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <h4>What we do: </h4>
+                        <span class="text-muted">We organize various kind of free sessions to overcome drug addictions and various health related
+                            issues.
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <%- include('partials/footer.ejs') %>
+
+</body>
+
+</html>

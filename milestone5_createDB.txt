@@ -1,0 +1,91 @@
+// empty database
+use social-helpers
+db.dropDatabase()
+
+// selecting the database
+use social-helpers
+
+// Adding Users
+db.users.insert([{
+  "userId": "1",
+  "username":"karanshah",
+  "password":"karan1",
+  "firstName": "Karan",
+  "lastName": "Shah",
+  "email": "karanshah@socialhelpers.com"
+}]);
+
+// Adding Connections
+db.connections.insert([{
+  userId: '1',
+  connectionId: 'alcohol-drug-addiction',
+  name: 'Alcohol Drug Addiction',
+  topic: 'DRUG_ADDICTION',
+  detail: 'This session is all about helping the people to get rid of alcohol drug addiction. The speaker of this session is a Dr. Jon. He is a doctor and he is working since more than 20 years and helping the world to get rid of drug addictions by conducting many sessions every month.',
+  date: new Date('01/24/2020'),
+  startTime: '13:00',
+  endTime: '13:30',
+  location: '400 E M.L.K. Jr Blvd, Charlotte, NC 28202',
+  hostedBy: 'Karan Shah',
+  speaker: 'Dr. Jon doe',
+}, {
+    userId: '1',
+    connectionId: 'tobacco-addiction',
+    name: 'Tobacco Addiction',
+    topic: 'DRUG_ADDICTION',
+    detail: 'This session is all about helping the people to get rid of tobacco addiction. The speaker of this session is a Dr. Jon. He is a doctor and he is working since more than 20 years and helping the world to get rid of drug addictions by conducting many sessions every month.',
+    date: new Date('01/24/2020'),
+    startTime: '13:00',
+    endTime: '13:30',
+    location: '400 E M.L.K. Jr Blvd, Charlotte, NC 28202',
+    hostedBy: 'Karan Shah',
+    speaker: 'Dr. Jon doe'
+}, {
+    userId: '1',
+    connectionId: 'other-type-of-drug-addiction',
+    name: 'Other Type of Drug Addiction',
+    topic: 'DRUG_ADDICTION',
+    detail: 'This session is all about helping the people to get rid of various kind of drugs addiction. The speaker of this session is a Dr. Jon. He is a doctor and he is working since more than 20 years and helping the world to get rid of drug addictions by conducting many sessions every month.',
+    date: new Date('01/24/2020'),
+    startTime: '13:00',
+    endTime: '13:30',
+    location: '400 E M.L.K. Jr Blvd, Charlotte, NC 28202',
+    hostedBy: 'Karan Shah',
+    speaker: 'Dr. Jon doe'
+}, {
+    userId: '1',
+    connectionId: 'child-and-family-health-care',
+    name: 'Child & Family Health Care',
+    topic: 'HEALTH_CARE',
+    detail: 'This session is all about teach and educate the people about child and family health care. The speaker of this session is a Dr. Jon. He is a doctor and he is working since more than 20 years and helping the world by conducting many awareness sessions every month.',
+    date: new Date('01/24/2020'),
+    startTime: '13:00',
+    endTime: '13:30',
+    location: '400 E M.L.K. Jr Blvd, Charlotte, NC 28202',
+    hostedBy: 'Karan Shah',
+    speaker: 'Dr. Jon doe'
+}, {
+    userId: '1',
+    connectionId: 'senior-citizen-health-care',
+    name: 'Senior Citizen Health Care',
+    topic: 'HEALTH_CARE',
+    detail: 'This session is all about teach and educate the people about senior citizen health care. The speaker of this session is a Dr. Jon. He is a doctor and he is working since more than 20 years and helping the world by conducting many awareness sessions every month.',
+    date: new Date('01/24/2020'),
+    startTime: '13:00',
+    endTime: '13:30',
+    location: '400 E M.L.K. Jr Blvd, Charlotte, NC 28202',
+    hostedBy: 'Karan Shah',
+    speaker: 'Dr. Jon doe'
+}, {
+    userId: '1',
+    connectionId: 'mental-health-care',
+    name: 'Mental Health Care',
+    topic: 'HEALTH_CARE',
+    detail: 'This session is all about teach and educate the people about mental health care. The speaker of this session is a Dr. Jon. He is a doctor and he is working since more than 20 years and helping the world by conducting many awareness sessions every month.',
+    date: new Date('01/24/2020'),
+    startTime: '13:00',
+    endTime: '13:30',
+    location: '400 E M.L.K. Jr Blvd, Charlotte, NC 28202',
+    hostedBy: 'Karan Shah',
+    speaker: 'Dr. Jon doe'
+}]);

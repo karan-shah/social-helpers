@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>Connections- Social Helpers</title>
+
+    <!-- Font-Awesome css -->
+    <link rel="stylesheet" href="/assets/css/all.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <%- include('partials/header.ejs', {title: 'connections', isUserLoggedIn: isUserLoggedIn}) %>
+
+        <!-- General Site Navigation -->
+        <%- include('partials/navigation.ejs', {title: 'connections', currentUser: currentUser, isUserLoggedIn: isUserLoggedIn}) %>
+
+            <!-- Main Content  -->
+            <div class="m-4 main-content-container">
+                <div>
+                    <% Object.keys(connections).forEach(function(key) { %>
+                        <h4 class="text-white connections-topic-title">
+                            <!-- Show topic label if it's added in the constant else display the value of topic field itself  -->
+                            <%= TOPICS[key] || key %>
+                        </h4>
+                        <div class="box">
+                            <ul class="mb-0">
+                                <% connections[key].forEach(function(connection) { %>
+                                    <li>
+                                        <a href='/connection?connectionId=<%= connection.connectionId %>' class="text-body">
+                                            <%= connection.name %>
+                                        </a>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <%- include('partials/footer.ejs') %>
+
+</body>
+
+</html>

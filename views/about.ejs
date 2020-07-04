@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>About Us- Social Helpers</title>
+
+    <!-- Font-Awesome css -->
+    <link rel="stylesheet" href="/assets/css/all.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <%- include('partials/header.ejs', {title: 'about', isUserLoggedIn: isUserLoggedIn}) %>
+
+        <!-- General Site Navigation -->
+        <%- include('partials/navigation.ejs', {title: 'about', currentUser: currentUser, isUserLoggedIn: isUserLoggedIn}) %>
+
+            <!-- Main Content  -->
+            <div class="m-4 box main-content-container">
+                <div>
+                    <h2>Welcome to Social Helpers!</h2>
+                </div>
+                <p class="mt-3 mb-1 text-muted">
+                    Social Helpers© is a non-profit organization founded in 2020. We are group of more than 20 people wants help people to get
+                    rid of drugs addiction and improve their life. The purpose of this organization is to enhance people
+                    life by organizing free sessions to overcome various kind of drug addiction as well as to overcome various
+                    health related issues.
+                </p>
+                <p class="text-muted">Check out the connections section for all exciting connections
+                    <a href='/connections'>here</a>.
+                </p>
+            </div>
+
+            <!-- Footer -->
+            <%- include('partials/footer.ejs') %>
+
+</body>
+
+</html>

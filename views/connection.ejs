@@ -1,0 +1,134 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <% if(connection) { %>
+        <%= connection.name %>
+        <% } else { %>
+        No Record Found
+        <% } %>
+        - Social Helpers
+    </title>
+
+    <!-- Font-Awesome css -->
+    <link rel="stylesheet" href="/assets/css/all.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <%- include('partials/header.ejs', {title: 'connection', isUserLoggedIn: isUserLoggedIn}) %>
+
+    <!-- General Site Navigation -->
+    <%- include('partials/navigation.ejs', {title: 'connection', currentUser: currentUser, isUserLoggedIn: isUserLoggedIn}) %>
+
+    <!-- Main Content  -->
+    <div class="main-content-container">
+        <% if (connection) { %>
+        <div class="text-center py-3">
+            <h3 class="mb-1 text-white">
+                <%= connection.name %>
+            </h3>
+        </div>
+        <div class="box mx-5 mt-0">
+            <div class="d-flex flex-row justify-content-between">
+                <div class="d-flex flex-row mt-2">
+                    <img class="avatar mr-2" src="/assets/images/avatar.png" alt="User Picture" />
+                    <div class="d-flex flex-column">
+                        <small class="text-muted">Hosted By:</small>
+                        <b>
+                            <%= connection.hostedBy %>
+                        </b>
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <div>
+                        <p class="text-muted">Are you going? <%= count %> people going.</p>
+                    </div>
+                    <div>
+                        <% if(rsvp === 'Yes') { %>
+                        <a class="btn btn-primary btn-sm"
+                            href="/user/update-connection/rsvp?connectionId=<%= connection.connectionId %>&rsvp=Yes">Yes</a>
+                        <% } else { %>
+                        <a class="btn btn-secondary btn-sm"
+                            href="/user/update-connection/rsvp?connectionId=<%= connection.connectionId %>&rsvp=Yes">Yes</a>
+                        <% } %>
+                        <% if(rsvp === 'No') { %>
+                        <a class="btn btn-primary btn-sm"
+                            href="/user/update-connection/rsvp?connectionId=<%= connection.connectionId %>&rsvp=No">No</a>
+                        <% } else { %>
+                        <a class="btn btn-secondary btn-sm"
+                            href="/user/update-connection/rsvp?connectionId=<%= connection.connectionId %>&rsvp=No">No</a>
+                        <% } %>
+                        <% if(rsvp === 'Maybe') { %>
+                        <a class="btn btn-primary btn-sm"
+                            href="/user/update-connection/rsvp?connectionId=<%= connection.connectionId %>&rsvp=Maybe">Maybe</a>
+                        <% } else { %>
+                        <a class="btn btn-secondary btn-sm"
+                            href="/user/update-connection/rsvp?connectionId=<%= connection.connectionId %>&rsvp=Maybe">Maybe</a>
+                        <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row mx-5 my-3">
+            <div class="d-flex flex-column col-8 pl-0">
+                <div class="box">
+                    <h4>About the session: </h4>
+                    <p>
+                        <%= connection.detail %>
+                    </p>
+                    <div class="mt-3">
+                        <h6 class="mb-0">Speaker:</h6>
+                        <p class="text-muted">
+                            <%= connection.speaker %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column col-4 pr-0">
+                <div class="box">
+                    <div class="d-flex flex-row">
+                        <i class="far fa-clock icon fa-lg mt-2 mr-2"></i>
+                        <div>
+                            <p class="mb-0">
+                                <%= date %>
+                            </p>
+                            <p class="mb-0">
+                                <%= startTime %> to
+                                <%= endTime %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row mt-2">
+                        <i class='fas fa-map-marker-alt icon fa-lg mt-1 mr-2'></i>
+                        <div>
+                            <p class="mb-0">
+                                <%= connection.location %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } else { %>
+        <div class="text-center py-3">
+            <h3 class="mb-1 text-white">No record found for the requested connection ID</h3>
+        </div>
+        <% } %>
+    </div>
+
+    <!-- Footer -->
+    <%- include('partials/footer.ejs') %>
+
+</body>
+
+</html>

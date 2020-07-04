@@ -1,0 +1,18 @@
+var Connections = require('../models/Connections')
+
+// load hard-coded data from the dataset
+var getConnections = async () => {
+    let connections = await Connections.find()
+    return connections
+}
+
+// get perticular connection details based on provided connectionID
+var getConnection = async (connectionId) => {
+    let connection = await Connections.findOne({ connectionId })
+    return connection
+}
+
+module.exports = {
+    getConnection: getConnection,
+    getConnections: getConnections
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>Saved Connections- Social Helpers</title>
+
+    <!-- Font-Awesome css -->
+    <link rel="stylesheet" href="/assets/css/all.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <%- include('partials/header.ejs', {title: 'savedConnections', isUserLoggedIn: isUserLoggedIn}) %>
+
+    <!-- General Site Navigation -->
+    <%- include('partials/navigation.ejs', {title: 'savedConnections', currentUser: currentUser, isUserLoggedIn: isUserLoggedIn}) %>
+
+    <!-- Main Content  -->
+    <div class="px-5 py-3 main-content-container">
+        <h4 class="text-white">
+            <%= currentUser.firstName %>
+            <%= currentUser.lastName %>'s Connections</h4>
+        <div class="box mt-3 p-0">
+            <% if(savedConnections.length > 0) { %>
+            <table class="table table-bordered table-hover mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Connection</th>
+                        <th>Category</th>
+                        <th>Going?</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <% savedConnections.forEach((connection, index) => { %>
+                <tr>
+                    <td>
+                        <% if(connection.connection.topic === 'DRUG_ADDICTION') { %>
+                        <img src='/assets/images/avatar.png' class="coonection-icon mr-3" alt='Icon' />
+                        <% } %>
+                        <%= connection.connection.name %>
+                    </td>
+                    <td>
+                        <%= TOPICS[connection.connection.topic] || connection.connection.topic %>
+                    </td>
+                    <td>
+                        <%= connection.rsvp %>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm"
+                            href="/connection?connectionId=<%= connection.connection.connectionId %>">Update</a>
+                        <a class="btn btn-danger btn-sm"
+                            href="/user/update-connection/delete?connectionId=<%= connection.connection.connectionId %>">Delete</a>
+                    </td>
+
+                </tr>
+                <% }) %>
+            </table>
+            <% } else { %>
+            <h3 class="text-center py-3">No saved connections are available.</h3>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('partials/footer.ejs') %>
+
+</body>
+
+</html>

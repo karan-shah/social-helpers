@@ -1,0 +1,11 @@
+<!-- General Site Navigation -->
+<div class="d-flex flex-row justify-content-between site-navigation px-4">
+    <a href="/connections" class="text-white">Connections</a>
+    <div>
+        <% if(isUserLoggedIn) { %>
+            <h6 class="text-white">Welcome,
+                <%= currentUser.firstName %>
+                    <%= currentUser.lastName %>!</h6>
+            <% } %>
+    </div>
+</div>

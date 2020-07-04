@@ -1,0 +1,231 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>Create New Connection- Social Helpers</title>
+
+    <!-- Font-Awesome css -->
+    <link rel="stylesheet" href="/assets/css/all.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <%- include('partials/header.ejs', {title: 'newConnection', isUserLoggedIn: isUserLoggedIn}) %>
+
+    <!-- General Site Navigation -->
+    <%- include('partials/navigation.ejs', {title: 'newConnection', currentUser: currentUser, isUserLoggedIn: isUserLoggedIn}) %>
+
+    <!-- Main Content  -->
+    <div class="box m-4 main-content-container">
+        <form method="POST" action="/user/new-connection">
+            <% if(errors && errors.length) { %>
+            <% if(errors.filter(error => error.param === 'topic').length > 0) { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='topic'>Topic</label>
+                <div class="col-10">
+                    <input type="text" class="form-control is-invalid" id='topic' name='topic'
+                        placeholder="Enter conneciton topic" value='<%= values.topic %>' required>
+                    <% errors.filter(error => error.param === 'topic').forEach(error => { %>
+                    <div class="invalid-feedback"><%= error.msg %></div>
+                    <% }) %>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='topic'>Topic</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id='topic' name='topic' placeholder="Enter conneciton topic"
+                        value='<%= values.topic %>' required>
+                </div>
+            </div>
+            <% } %>
+            <% if(errors.filter(error => error.param === 'name').length > 0) { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='name'>Name</label>
+                <div class="col-10">
+                    <input type="text" class="form-control is-invalid" id='name' name='name'
+                        placeholder="Enter connection name" value='<%= values.name %>' required>
+                    <% errors.filter(error => error.param === 'name').forEach(error => { %>
+                    <div class="invalid-feedback"><%= error.msg %></div>
+                    <% }) %>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='name'>Name</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id='name' name='name' placeholder="Enter connection name"
+                        value='<%= values.name %>' required>
+                </div>
+            </div>
+            <% } %>
+            <% if (errors.filter(error => error.param === 'detail').length > 0) { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='detail'>Details</label>
+                <div class="col-10">
+                    <textarea class="form-control is-invalid" id='detail' name='detail'
+                        placeholder="Enter connection details" required><%= values.detail %></textarea>
+                    <% errors.filter(error => error.param === 'detail').forEach(error => { %>
+                    <div class="invalid-feedback"><%= error.msg %></div>
+                    <% }) %>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='detail'>Details</label>
+                <div class="col-10">
+                    <textarea class="form-control" id='detail' name='detail' placeholder="Enter connection details"
+                        required><%= values.detail %></textarea>
+                </div>
+            </div>
+            <% } %>
+            <% if(errors.filter(error => error.param === 'location').length > 0) { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='location'>Location</label>
+                <div class="col-10">
+                    <input type="text" class="form-control is-invalid" id='location' name='location'
+                        placeholder="Enter connection location" value='<%= values.location %>' required>
+                    <% errors.filter(error => error.param === 'location').forEach(error => { %>
+                    <div class="invalid-feedback"><%= error.msg %></div>
+                    <% }) %>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='location'>Location</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id='location' name='location'
+                        placeholder="Enter connection location" value='<%= values.location %>' required>
+                </div>
+            </div>
+            <% } %>
+            <% if(errors.filter(error => error.param === 'date').length > 0) { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='date'>Date</label>
+                <div class="col-10">
+                    <input type="date" id='date' name='date' class="form-control is-invalid" value='<%= values.date %>'
+                        required>
+                    <% errors.filter(error => error.param === 'date').forEach(error => { %>
+                    <div class="invalid-feedback"><%= error.msg %></div>
+                    <% }) %>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='date'>Date</label>
+                <div class="col-10">
+                    <input type="date" id='date' name='date' class="form-control" value='<%= values.date %>' required>
+                </div>
+            </div>
+            <% } %>
+            <% if(errors.filter(error => error.param === 'startTime').length > 0) { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='startTime'>Start Time</label>
+                <div class="col-10">
+                    <input type="time" id='startTime' name='startTime' class="form-control is-invalid"
+                        value='<%= values.startTime %>' required>
+                    <% errors.filter(error => error.param === 'startTime').forEach(error => { %>
+                    <div class="invalid-feedback"><%= error.msg %></div>
+                    <% }) %>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='startTime'>Start Time</label>
+                <div class="col-10">
+                    <input type="time" id='startTime' name='startTime' class="form-control"
+                        value='<%= values.startTime %>' required>
+                </div>
+            </div>
+            <% } %>
+            <% if(errors.filter(error => error.param === 'endTime').length > 0) { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='endTime'>End Time</label>
+                <div class="col-10">
+                    <input type="time" id='endTime' name='endTime' class="form-control is-invalid"
+                        value='<%= values.endTime %>' required>
+                    <% errors.filter(error => error.param === 'endTime').forEach(error => { %>
+                    <div class="invalid-feedback"><%= error.msg %></div>
+                    <% }) %>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='endTime'>End Time</label>
+                <div class="col-10">
+                    <input type="time" id='endTime' name='endTime' class="form-control" value='<%= values.endTime %>'
+                        required>
+
+                </div>
+            </div>
+            <% } %>
+            <% } else { %>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='topic'>Topic</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id='topic' name='topic' placeholder="Enter conneciton topic"
+                        value='<%= values.topic %>' required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='name'>Name</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id='name' name='name' placeholder="Enter connection name"
+                        value='<%= values.name %>' required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='detail'>Details</label>
+                <div class="col-10">
+                    <textarea class="form-control" id='detail' name='detail' placeholder="Enter connection details"
+                        required><%= values.detail %></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='location'>Location</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id='location' name='location'
+                        placeholder="Enter connection location" value='<%= values.location %>' required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='date'>Date</label>
+                <div class="col-10">
+                    <input type="date" id='date' name='date' class="form-control" value='<%= values.date %>' required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='startTime'>Start Time</label>
+                <div class="col-10">
+                    <input type="time" id='startTime' name='startTime' class="form-control"
+                        value='<%= values.startTime %>' required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label" for='endTime'>End Time</label>
+                <div class="col-10">
+                    <input type="time" id='endTime' name='endTime' class="form-control" value='<%= values.endTime %>'
+                        required>
+                </div>
+            </div>
+            <% } %>
+            <div>
+                <button type="submit" class="btn btn-primary btn mr-3">Create Connection</button>
+                <a class="btn btn-secondary btn" href="/">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <%- include('partials/footer.ejs') %>
+
+</body>
+
+</html>
