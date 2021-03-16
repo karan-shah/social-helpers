@@ -24,5 +24,5 @@ app.use('/', home)
 app.use('/*', home) // For 404 page
 
 app.listen(process.env.PORT || 3000, function () {
-    console.log('server listening on port 8084')
+    console.log('server running')
 });
