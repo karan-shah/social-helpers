@@ -3,7 +3,7 @@ var session = require("express-session");
 var mongoose = require("mongoose");
 
 // Initialize the database
-mongoose.connect("mongodb://localhost/social-helpers", {
+mongoose.connect("mongodb+srv://karan:5ATEGbmn8MOCl7as@cluster0.ii0nx.mongodb.net/social-helpers?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
