@@ -1,8 +1,8 @@
 var Connections = require('../models/Connections')
 
 // load hard-coded data from the dataset
-var getConnections = async () => {
-    let connections = await Connections.find()
+var getConnections = async (userId) => {
+    let connections = await Connections.find({ userId })
     return connections
 }
 
