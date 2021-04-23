@@ -3,10 +3,20 @@ var session = require("express-session");
 var mongoose = require("mongoose");
 
 // Initialize the database
-mongoose.connect("mongodb+srv://karan:5ATEGbmn8MOCl7as@cluster0.ii0nx.mongodb.net/social-helpers?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+try {
+    mongoose.connect("mongodb+srv://karan:5ATEGbmn8MOCl7as@cluster0.ii0nx.mongodb.net/social-helpers?retryWrites=true&w=majority", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    });
+
+    var db = mongoose.connection;
+    db.on("error", console.error.bind(console, "connection error:"));
+    db.once("open", function () {
+        console.log("Connected to social-helpers database!");
+    });
+} catch (error) {
+    console.log("Error while establishing database connection : " + error);
+}
 
 var app = express()
 
