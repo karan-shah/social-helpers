@@ -29,13 +29,13 @@ router.get('/saved-connections', async function (req, res) {
 })
 
 // Update user RSVP for a connection
-router.get('/update-connection/rsvp', function (req, res) {
+router.get('/update-connection/rsvp', async function (req, res) {
     if (req.session.isUserLoggedIn) {
         if (req.query) {
             const { connectionId, rsvp } = req.query
             if (rsvp === 'Yes' || rsvp === 'No' || rsvp === 'Maybe') {
                 let userId = req.session.theUser.userId
-                userProfileDB.updateRSVP(userId, connectionId, rsvp)
+                await userProfileDB.updateRSVP(userId, connectionId, rsvp)
             }
         }
         res.redirect('/user/saved-connections')
@@ -112,6 +112,69 @@ router.post('/login', urlencodedParser, [
             req.session.loginInputValues = values
             res.redirect('/user/login')
         }
+    }
+})
+
+router.get('/signup', function (req, res) {
+    const { theUser, isUserLoggedIn, signupInputErrors, signupInputValues } = req.session
+    if (isUserLoggedIn) {
+        res.redirect('/user/saved-connections')
+    } else {
+        res.render('signup', {
+            currentUser: theUser,
+            isUserLoggedIn,
+            errors: signupInputErrors || [],
+            values: signupInputValues || {}
+        })
+    }
+})
+
+// Sign Up POST Request
+router.post('/signup', urlencodedParser, [
+    check("firstName")
+        .not()
+        .isEmpty()
+        .withMessage("First Name is required")
+        .isAlpha()
+        .withMessage('First Name must only contain letters'),
+    check("lastName")
+        .not()
+        .isEmpty()
+        .withMessage("Last Name is required")
+        .isAlpha()
+        .withMessage('Last Name must only contain letters'),
+    check("email")
+        .not()
+        .isEmpty()
+        .withMessage("Email is required")
+        .isEmail()
+        .withMessage('Email must be a valid email address'),
+    check("username")
+        .not()
+        .isEmpty()
+        .withMessage("Username is required")
+        .isAlpha()
+        .withMessage('Username must only contain letters'),
+    check("password")
+        .not()
+        .isEmpty()
+        .withMessage("Password is required")
+        .isLength(6)
+        .withMessage("Please enter minimum 6 characters")
+        .isAlphanumeric()
+        .withMessage('Password must only contain letters and numbers')
+], async function (req, res) {
+    const { firstName, lastName, email, username, password } = req.body
+    const errors = validationResult(req)
+    const values = { firstName, lastName, email, username, password }
+    if (!errors.isEmpty()) {
+        const minimal_errors = errors.array().map(error => { return { msg: error.msg, param: error.param } })
+        req.session.signupInputErrors = minimal_errors
+        req.session.signupInputValues = values
+        res.redirect('/user/signup')
+    } else {
+        await userDB.createUser({ firstName, lastName, email, username, password })
+        res.redirect('/user/login')
     }
 })
 
